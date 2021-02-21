@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StandardViewer.Data.Models;
+using StandardViewer.Services.DocumentService;
 
 namespace StandardViewer
 {
@@ -30,6 +31,8 @@ namespace StandardViewer
             services.AddDbContext<ViewerDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("StandardViewer")));
+
+            services.AddTransient<IDocumentService, DocumentService>();        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

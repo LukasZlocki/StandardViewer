@@ -6,6 +6,7 @@
 
   <ItemGroup>
       <ProjectReference Include="..\StandardViewer.Data\StandardViewer.Data.csproj" />
+      <ProjectReference Include="..\StandardViewer.Services\StandardViewer.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

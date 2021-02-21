@@ -1,1 +1,5 @@
 .vscode
+
+StandardViewer.Data/obj/
+StandardViewer.Web/obj/ 
+

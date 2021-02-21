@@ -1,18 +1,39 @@
 using System.Collections.Generic;
+using System.Linq;
 using StandardViewer.Data.Models;
 
 namespace StandardViewer.Services.DocumentService
 {
     public class DocumentService : IDocumentService
     {
-        public List<Document> GetDocumentById(int id)
+        readonly ViewerDbContext _db;
+
+        public DocumentService(ViewerDbContext db)
         {
-            throw new System.NotImplementedException();
+            _db = db;
         }
 
-        public Document GetDocumentByProductNumber(string productNumber)
+        public List<Document> GetAllDocuments()
         {
-            throw new System.NotImplementedException();
+            var dbResult = _db.Documents.ToList();
+            return dbResult; 
         }
+
+        // GET
+        public Document GetDocumentById(int id)
+        {
+            var dbResult = _db.Documents.Find(id);
+            return dbResult;
+        }
+
+        // GET 
+        public List<Document> GetDocumentsByProductNumber(string productNumber)
+        {
+            var dbResult = _db.Documents.Where(nb => nb.ProductNumber == productNumber).ToList();
+            return dbResult; 
+        }
+
+
+
     }
 }
