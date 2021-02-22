@@ -4,3 +4,6 @@ StandardViewer.Data/obj/
 StandardViewer.Services/obj/
 StandardViewer.Web/obj/
 
+StandardViewer.Services/bin/
+StandardViewer.Web/bin/
+
