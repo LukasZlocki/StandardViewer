@@ -1,5 +1,6 @@
 .vscode
 
 StandardViewer.Data/obj/
-StandardViewer.Web/obj/ 
+StandardViewer.Services/obj/
+StandardViewer.Web/obj/
 

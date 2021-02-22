@@ -24,7 +24,7 @@ namespace StandardViewer.Web.Controllers
             return Ok (doc);
         } 
 
-        [HttpGet("api/document")]
+        [HttpGet("api/documentProduct/{partNb}")]
         public ActionResult GetAllDocumentsByPartNumber(string partNb)
         {
             _logger.LogInformation("Get all documents by part number");
