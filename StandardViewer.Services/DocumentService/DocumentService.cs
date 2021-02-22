@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using StandardViewer.Data.Models;
+using StandardViewer.Services.Dtos;
+using StandardViewer.Services.Mapper;
 
 namespace StandardViewer.Services.DocumentService
 {
@@ -13,24 +15,31 @@ namespace StandardViewer.Services.DocumentService
             _db = db;
         }
 
-        public List<Document> GetAllDocuments()
+        public List<DocumentReadDTO> GetAllDocuments()
         {
+            // extracting data list from db
             var dbResult = _db.Documents.ToList();
-            return dbResult; 
+            // serialize data list from core model to DTO list
+            var service = DocumentMapper.SerializeDocumentListToDocumentDtoList(dbResult);
+            return service; 
         }
 
         // GET
-        public Document GetDocumentById(int id)
+        public DocumentReadDTO GetDocumentById(int id)
         {
+            // extracting data from db
             var dbResult = _db.Documents.Find(id);
-            return dbResult;
+            // serialize data from core model to DTO
+            var service = DocumentMapper.SerializeDocumentToDocumentDto(dbResult); 
+            return service;
         }
 
         // GET 
-        public List<Document> GetDocumentsByProductNumber(string productNumber)
+        public List<DocumentReadDTO> GetDocumentsByProductNumber(string productNumber)
         {
             var dbResult = _db.Documents.Where(nb => nb.ProductNumber == productNumber).ToList();
-            return dbResult; 
+            var service = DocumentMapper.SerializeDocumentListToDocumentDtoList(dbResult);
+            return service;
         }
 
 

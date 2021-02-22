@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using StandardViewer.Data.Models;
+using StandardViewer.Services.Dtos;
 
 namespace StandardViewer.Services.DocumentService
 {
     public interface IDocumentService
     {           
         // GET
-        public List<Document> GetDocumentsByProductNumber(string productNumber);
+        public List<DocumentReadDTO> GetDocumentsByProductNumber(string productNumber);
         // GET
-        public Document GetDocumentById(int id);
+        public DocumentReadDTO GetDocumentById(int id);
         // GET
-        public List<Document> GetAllDocuments();
+        public List<DocumentReadDTO> GetAllDocuments();
     }
 }
