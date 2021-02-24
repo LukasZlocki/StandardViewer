@@ -1,0 +1,33 @@
+@model StandardViewer.Web.Models.DocumentVM.DocumentListViewModel
+
+@{
+    ViewData["Title"] = "Document Page";
+}
+
+<br />
+<div class="border-bottom border-white shadow rounded-lg" style="background-color: #ededed">
+    <div class="row">
+        <div class="col-6">
+            <h6 class="text">Lista wszystkich dokumentow</h6>
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="border-bottom border-white shadow-lg" style="background-color: #ededed">
+    <table class="table table-striped border">
+        @foreach (var doc in Model.DocumentsList)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Document" asp-action="Document" asp-route-id="@doc.Id">
+                        @Html.DisplayFor(m => doc.ProductNumber)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(m => doc.DocumentName)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
