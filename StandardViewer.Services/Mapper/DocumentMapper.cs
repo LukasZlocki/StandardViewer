@@ -12,6 +12,7 @@ namespace StandardViewer.Services.Mapper
         {
             return new DocumentReadDTO 
             {
+                Id = document.Id,
                 ProductNumber  = document.ProductNumber,
                 DocumentName = document.DocumentName
             };
@@ -20,9 +21,9 @@ namespace StandardViewer.Services.Mapper
         public static List<DocumentReadDTO> SerializeDocumentListToDocumentDtoList(IEnumerable<Document> documents)
         {
             return documents.Select (document => new DocumentReadDTO {
+                Id = document.Id,
                 ProductNumber  = document.ProductNumber,
                 DocumentName = document.DocumentName
-
             }).ToList();  
         }
 

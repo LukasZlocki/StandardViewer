@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StandardViewer.Services.DocumentService;
+using StandardViewer.Web.Models.DocumentVM;
+using StandardViewer.Web.Serializer;
 
 namespace StandardViewer.Web.Controllers
 {
     [ApiController]
-    public class DocumentController : ControllerBase
+    public class DocumentController : Controller
     {
         private readonly ILogger<DocumentController> _logger;
         private readonly IDocumentService _documentService;
@@ -16,15 +18,15 @@ namespace StandardViewer.Web.Controllers
             _documentService = documentService;
         }
 
-        [HttpGet("api/document/{id}")]
+        [HttpGet("document/document/{id}")]
         public ActionResult GetDocumentById(int id)
         {
             _logger.LogInformation("Get document by Id");
             var doc = _documentService.GetDocumentById(id);
-            return Ok (doc);
+            return View ("Standard");
         } 
 
-        [HttpGet("api/documentProduct/{partNb}")]
+        [HttpGet("documentProduct/{partNb}")]
         public ActionResult GetAllDocumentsByPartNumber(string partNb)
         {
             _logger.LogInformation("Get all documents by part number");
@@ -32,12 +34,15 @@ namespace StandardViewer.Web.Controllers
             return Ok(docsList);
         }
 
-        [HttpGet("api/document")]
+        [HttpGet("document/document")]
         public ActionResult GetAllDocuments()
         {
             _logger.LogInformation("Get All documents");
             var docsAll = _documentService.GetAllDocuments();
-            return Ok(docsAll);
+            var serviceViewModel = DocumentSerializer.SerializeToViewModel(docsAll); 
+
+            //return Ok(docsAll);
+            return View("Document", serviceViewModel);
         }
 
     }
