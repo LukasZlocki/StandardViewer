@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StandardViewer.Services.DocumentService;
@@ -44,6 +45,19 @@ namespace StandardViewer.Web.Controllers
             //return Ok(docsAll);
             return View("Document", serviceViewModel);
         }
+
+
+        [HttpGet("document/pdf")]
+        public ActionResult ShowPdf()
+        {
+            string fileName = @"D:\Test\Lista3.pdf";
+            //string path = Path.Combine(@"D:\Test\", fileName);you
+            var fileBytes = System.IO.File.ReadAllBytes(fileName);
+            return File(fileBytes, "application/pdf");
+
+        }
+        
+
 
     }
 }
